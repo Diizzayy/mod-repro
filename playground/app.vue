@@ -1,18 +1,12 @@
 <template>
-  <div>
-    Nuxt module playground!
-
-    <template v-if="data">
-      <p v-for="(ship, i) of data?.ships" :key="ship.id">
-        {{ i + 1 }}: {{ ship }}
-      </p>
-    </template>
-    <p v-if="error">
-      error: {{ error }}
-    </p>
-  </div>
+  <p>Count: {{ data?.ships.length || 0 }}</p>
 </template>
 
 <script lang="ts" setup>
 const { data, error } = useSpaceX('query { ships { id name } }')
+
+if (error.value) {
+  // eslint-disable-next-line no-console
+  console.error(error.value)
+}
 </script>
