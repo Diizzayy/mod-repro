@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addAutoImport } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addAutoImport, extendViteConfig } from '@nuxt/kit'
 
 export default defineNuxtModule({
   meta: {
@@ -11,5 +11,9 @@ export default defineNuxtModule({
     nuxt.options.build.transpile.push(resolve('runtime'))
 
     addAutoImport({ name: 'useSpaceX', from: resolve('runtime/spacex') })
+
+    extendViteConfig((config) => {
+      config.optimizeDeps?.include?.push('graphql-request')
+    })
   }
 })
