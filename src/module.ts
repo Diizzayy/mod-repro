@@ -8,7 +8,7 @@ export default defineNuxtModule({
   setup (_, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.build.transpile.push(resolve('runtime'))
+    nuxt.options.build.transpile.push(resolve('runtime'), 'graphql')
 
     addAutoImport({ name: 'useSpaceX', from: resolve('runtime/spacex') })
 
